@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#eceae3" />
+    <title>2027 입시 캘린더 | 수능 D-day·대학 발표·면접 일정 - 차곡</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="planner-theme.css" />
+    <script src="common.js" defer></script>
+    <script src="planner.js" defer></script>
+    <meta
+      name="description"
+      content="2027학년도 수능 D-day와 GIST·경북대·POSTECH 발표·면접 일정을 확인하고, 나이스 학교 학사일정과 나만의 체크리스트를 관리하는 무료 입시 플래너 차곡입니다."
+    />
+    <meta name="application-name" content="차곡 입시 플래너" />
+    <meta
+      name="robots"
+      content="index, follow, max-snippet:-1, max-image-preview:large"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:site_name" content="차곡 입시 플래너" />
+    <meta
+      property="og:title"
+      content="2027 입시 캘린더 | 수능 D-day·대학 발표·면접 일정 - 차곡"
+    />
+    <meta
+      property="og:description"
+      content="2027학년도 수능 D-day와 GIST·경북대·POSTECH 발표·면접 일정을 확인하고, 나이스 학교 학사일정과 나만의 체크리스트를 관리하는 무료 입시 플래너 차곡입니다."
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="2027 입시 캘린더 | 수능 D-day·대학 발표·면접 일정 - 차곡"
+    />
+    <meta
+      name="twitter:description"
+      content="2027학년도 수능 D-day와 GIST·경북대·POSTECH 발표·면접 일정을 확인하고, 나이스 학교 학사일정과 나만의 체크리스트를 관리하는 무료 입시 플래너 차곡입니다."
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "2027 입시 캘린더 | 수능 D-day·대학 발표·면접 일정 - 차곡",
+        "description": "2027학년도 수능 D-day와 GIST·경북대·POSTECH 발표·면접 일정을 확인하고, 나이스 학교 학사일정과 나만의 체크리스트를 관리하는 무료 입시 플래너 차곡입니다.",
+        "inLanguage": "ko-KR",
+        "isAccessibleForFree": true,
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web",
+        "featureList": [
+          "수능 D-day",
+          "대학 발표·면접 일정",
+          "학교 학사일정 조회",
+          "localStorage 일정·체크리스트 관리"
+        ]
+      }
+    </script>
+  </head>
+  <body class="planner-page">
+    <header class="header">
+      <a class="brand" href="index.html"
+        ><span class="brand-icon" aria-hidden="true"><i></i><i></i><i></i></span
+        ><span>차곡</span></a
+      >
+      <nav aria-label="주 메뉴">
+        <a class="active" aria-current="page" href="index.html">내 일정</a
+        ><a href="school.html">우리 학교 일정</a>
+      </nav>
+    </header>
+    <main>
+      <div class="topline"><time data-today></time></div>
+      <section class="page-heading">
+        <div><h1>2027 입시 플래너</h1></div>
+        <button class="primary" id="add-event">＋ 일정 추가</button>
+      </section>
+      <div class="overview-row">
+        <section class="csat-banner" aria-label="수능 디데이">
+          <div class="csat-label">
+            <h2>수능까지</h2>
+            <p>2026. 11. 19. 목요일</p>
+          </div>
+          <strong id="csat-dday" aria-live="polite">D−20</strong
+          ><button id="go-csat" type="button">
+            수능일 보기 <span aria-hidden="true">↗</span>
+          </button>
+        </section>
+        <section class="summary-grid" aria-label="일정 요약">
+          <article class="summary accent">
+            <div>
+              <span class="overline">다음 일정</span>
+              <h2 id="next-title">예정된 일정 없음</h2>
+              <p id="next-date"></p>
+            </div>
+            <strong id="next-dday">D−?</strong>
+          </article>
+          <article class="summary">
+            <span class="overline">이번 달 일정</span
+            ><strong id="month-count">0<span>개</span></strong>
+          </article>
+          <article class="summary">
+            <span class="overline">할 일 진행률</span
+            ><strong id="progress-count">0<span>%</span></strong>
+            <div class="progress-track"><div id="progress-bar"></div></div>
+            <p id="progress-caption">할 일 없음</p>
+          </article>
+        </section>
+      </div>
+      <div class="workspace">
+        <section class="panel calendar-panel">
+          <div class="panel-heading">
+            <div class="month-heading"><h2 id="month-label"></h2></div>
+            <div class="calendar-actions">
+              <button id="today" class="text-button">오늘</button
+              ><button id="prev-month" class="icon-button" aria-label="이전 달">
+                ‹</button
+              ><button id="next-month" class="icon-button" aria-label="다음 달">
+                ›
+              </button>
+            </div>
+          </div>
+          <div class="calendar-scroll">
+            <div id="calendar" class="calendar" aria-label="월간 일정"></div>
+          </div>
+          <div class="calendar-foot event-legend" aria-label="일정 색상">
+            <span><i class="legend-dot tone-csat"></i>수능</span
+            ><span><i class="legend-dot tone-gist"></i>GIST</span
+            ><span><i class="legend-dot tone-knu"></i>경북대</span
+            ><span><i class="legend-dot tone-postech"></i>POSTECH</span
+            ><span><i class="legend-dot tone-daesung"></i>대성</span>
+          </div>
+        </section>
+        <div class="side-column">
+          <aside class="panel checklist-panel" id="reminders">
+            <div class="panel-heading">
+              <h2>할 일</h2>
+              <span id="task-badge" class="pill">0 / 0</span>
+            </div>
+            <form id="task-form" class="task-form">
+              <label class="sr-only" for="task-input">새 할 일</label
+              ><input
+                id="task-input"
+                maxlength="100"
+                placeholder="할 일"
+                required
+              /><button class="square-button" aria-label="할 일 추가">
+                ＋
+              </button>
+            </form>
+            <div class="task-tabs" role="group" aria-label="할 일 필터">
+              <button class="selected" data-task-filter="all">전체</button
+              ><button data-task-filter="active">진행 중</button
+              ><button data-task-filter="done">완료</button>
+            </div>
+            <ul id="task-list" class="task-list"></ul>
+          </aside>
+          <section class="panel schedule-panel">
+            <div class="panel-heading">
+              <div>
+                <h2 id="list-title">전체 일정</h2>
+                <div
+                  class="event-scope"
+                  role="group"
+                  aria-label="일정 표시 범위"
+                >
+                  <button
+                    type="button"
+                    data-event-scope="all"
+                    aria-pressed="true"
+                  >
+                    전체</button
+                  ><button
+                    type="button"
+                    data-event-scope="month"
+                    aria-pressed="false"
+                  >
+                    월별
+                  </button>
+                </div>
+              </div>
+              <div class="list-controls">
+                <label class="sr-only" for="event-search">일정 검색</label
+                ><input
+                  id="event-search"
+                  type="search"
+                  placeholder="일정 검색"
+                /><label class="sr-only" for="event-filter">일정 종류</label
+                ><select id="event-filter">
+                  <option value="all">모든 일정</option>
+                  <option value="admission">대입·수능</option>
+                  <option value="personal">나의 일정</option></select
+                ><button class="text-button" id="show-month" hidden>
+                  전체 일정
+                </button>
+              </div>
+            </div>
+            <div id="event-list"></div>
+            <button
+              type="button"
+              class="text-button restore-events"
+              id="restore-admissions"
+            >
+              기본 일정 복원
+            </button>
+          </section>
+        </div>
+        <nav class="month-index" aria-label="월 바로가기">
+          <button type="button" data-month="0" aria-label="1월">JAN</button
+          ><button type="button" data-month="1" aria-label="2월">FEB</button
+          ><button type="button" data-month="2" aria-label="3월">MAR</button
+          ><button type="button" data-month="3" aria-label="4월">APR</button
+          ><button type="button" data-month="4" aria-label="5월">MAY</button
+          ><button type="button" data-month="5" aria-label="6월">JUN</button
+          ><button type="button" data-month="6" aria-label="7월">JUL</button
+          ><button type="button" data-month="7" aria-label="8월">AUG</button
+          ><button type="button" data-month="8" aria-label="9월">SEP</button
+          ><button type="button" data-month="9" aria-label="10월">OCT</button
+          ><button type="button" data-month="10" aria-label="11월">NOV</button
+          ><button type="button" data-month="11" aria-label="12월">DEC</button
+          ><button
+            type="button"
+            id="go-reminders"
+            class="reminders-tab"
+            aria-controls="reminders"
+            aria-label="할 일 체크로 이동"
+          >
+            할 일
+          </button>
+        </nav>
+      </div>
+    </main>
+    <footer>
+      <div>
+        <button class="text-button" id="export-data">데이터 백업</button
+        ><label class="text-button import-label"
+          >백업 불러오기<input
+            type="file"
+            id="import-data"
+            accept="application/json,.json"
+            hidden
+        /></label>
+      </div>
+      <details class="example-notice">
+        <summary>일정 출처 <span aria-hidden="true">ⓘ</span></summary>
+        <p>
+          <a
+            href="https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=294&amp;boardSeq=100526&amp;lev=0&amp;m=020402"
+            target="_blank"
+            rel="noopener noreferrer"
+            >수능 · 교육부 ↗</a
+          >
+          ·
+          <a
+            href="https://www.gist.ac.kr/uadm/html/sub02/0205.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GIST ↗</a
+          >
+          ·
+          <a
+            href="https://ipsi1.knu.ac.kr/upload_data/mojib/20260904091056_32.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            >경북대 ↗</a
+          >
+          ·
+          <a
+            href="https://adm-u.postech.ac.kr/wp-content/uploads/2025/05/2027%ED%95%99%EB%85%84%EB%8F%84_POSTECH_%EB%AA%A8%EC%A7%91%EC%9A%94%EA%B0%95_web.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            >POSTECH ↗</a
+          >
+          ·
+          <a
+            href="https://www.dshw.co.kr/info/allabout/contents.do"
+            target="_blank"
+            rel="noopener noreferrer"
+            >대성 더프 ↗</a
+          >
+        </p>
+      </details>
+      <a class="guide-link" href="guide.html">이용 안내</a>
+    </footer>
+    <dialog id="event-dialog">
+      <form id="event-form">
+        <div class="dialog-heading">
+          <div><h2 id="dialog-title">새 일정 추가</h2></div>
+          <button
+            type="button"
+            class="icon-button"
+            data-close
+            aria-label="닫기"
+          >
+            ×
+          </button>
+        </div>
+        <input type="hidden" id="event-id" /><label
+          >일정 이름<input id="event-title" maxlength="100" required
+        /></label>
+        <div class="form-row">
+          <label
+            >날짜<input
+              id="event-date"
+              type="date"
+              min="1900-01-01"
+              max="2100-12-31"
+              required /></label
+          ><label
+            >종류<select id="event-category">
+              <option value="admission">대입·수능</option>
+              <option value="personal">나의 일정</option>
+            </select></label
+          >
+        </div>
+        <label
+          >메모<textarea id="event-note" rows="3" maxlength="500"></textarea>
+        </label>
+        <div class="dialog-actions">
+          <button type="button" class="secondary" data-close>취소</button
+          ><button class="primary">일정 저장</button>
+        </div>
+      </form>
+    </dialog>
+    <dialog id="task-dialog">
+      <form id="task-edit-form">
+        <div class="dialog-heading">
+          <h2>할 일 수정</h2>
+          <button
+            type="button"
+            class="icon-button"
+            data-close
+            aria-label="닫기"
+          >
+            ×
+          </button>
+        </div>
+        <input type="hidden" id="task-id" /><label
+          >할 일<input id="task-edit-title" maxlength="100" required
+        /></label>
+        <div class="dialog-actions">
+          <button type="button" class="secondary" data-close>취소</button
+          ><button class="primary">저장</button>
+        </div>
+      </form>
+    </dialog>
+    <dialog id="confirm-dialog">
+      <h2>삭제할까요?</h2>
+      <p id="confirm-message"></p>
+      <div class="dialog-actions">
+        <button class="secondary" id="confirm-cancel">취소</button
+        ><button class="danger" id="confirm-ok">삭제</button>
+      </div>
+    </dialog>
+    <div id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

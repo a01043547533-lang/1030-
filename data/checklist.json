@@ -1,0 +1,32 @@
+[
+  {
+    "id": "setup-2027-mock-ready",
+    "title": "11/2 더프 응시 시간·준비물 확인",
+    "done": false
+  },
+  {
+    "id": "setup-2027-mock-review",
+    "title": "더프 오답 정리하고 수능 전 복습 목록 만들기",
+    "done": false
+  },
+  {
+    "id": "setup-2027-knu-result",
+    "title": "11/6 경북대 1단계 결과 확인",
+    "done": false
+  },
+  {
+    "id": "setup-2027-csat-ready",
+    "title": "수능 수험표·신분증·준비물 챙기기",
+    "done": false
+  },
+  {
+    "id": "setup-2027-postech-result",
+    "title": "11/20 포스텍 결과·후속 안내 확인",
+    "done": false
+  },
+  {
+    "id": "setup-2027-postech-ready",
+    "title": "포스텍 내 전형 면접일·이동 경로 확인",
+    "done": false
+  }
+]
